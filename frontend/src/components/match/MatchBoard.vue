@@ -41,9 +41,9 @@ const buttonText = computed(() => {
 })
 
 const buttonClass = computed(() => {
-  if (props.mode === 'single') return 'btn-primary'
+  if (props.mode === 'single') return 'btn-info'
   const classes = {
-    ready: 'btn-primary',
+    ready: 'btn-info',
     matching: 'btn-error',
     matched: 'btn-success'
   }

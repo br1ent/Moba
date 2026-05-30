@@ -86,7 +86,7 @@ async function handleRegister() {
             />
           </fieldset>
           <div v-if="errorMsg" class="text-error text-sm mt-2">{{ errorMsg }}</div>
-          <button class="btn btn-primary w-full mt-6" :disabled="loading">
+          <button class="btn btn-info w-full mt-6" :disabled="loading">
             {{ loading ? '注册中...' : '注册' }}
           </button>
         </form>

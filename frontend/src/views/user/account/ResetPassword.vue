@@ -95,7 +95,7 @@ async function handleReset() {
           </fieldset>
           <div v-if="errorMsg" class="text-error text-sm mt-2">{{ errorMsg }}</div>
           <div v-if="successMsg" class="text-success text-sm mt-2">{{ successMsg }}</div>
-          <button class="btn btn-primary w-full mt-6" :disabled="loading">
+          <button class="btn btn-info w-full mt-6" :disabled="loading">
             {{ loading ? '重置中...' : '重置密码' }}
           </button>
         </form>

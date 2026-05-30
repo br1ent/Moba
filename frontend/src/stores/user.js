@@ -78,7 +78,12 @@ export const useUserStore = defineStore('user', () => {
     accessToken.value = token
   }
 
-  function logout() {
+  async function logout() {
+    try {
+      await api.post('/user/account/logout/')
+    } catch {
+      // 忽略错误
+    }
     user.value = null
     accessToken.value = ''
   }

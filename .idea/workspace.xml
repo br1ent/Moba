@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="626b5d3d-efa3-4b64-aa6f-97fdde52af1b" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/navbar/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/navbar/NavBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/web/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/web/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/web/views/user/account/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/web/views/user/account/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/match/MatchBoard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/match/MatchBoard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/stores/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/user/account/LoginIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/account/LoginIndex.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/user/account/RegisterIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/account/RegisterIndex.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/user/account/ResetPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/account/ResetPassword.vue" afterDir="false" />
     </list>
@@ -86,7 +91,7 @@
       <updated>1779970390776</updated>
       <workItem from="1779970391839" duration="6485000" />
       <workItem from="1780100919436" duration="10627000" />
-      <workItem from="1780121576086" duration="4857000" />
+      <workItem from="1780121576086" duration="5758000" />
     </task>
     <servers />
   </component>
