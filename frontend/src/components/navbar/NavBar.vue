@@ -41,7 +41,7 @@ watch(() => router.currentRoute.value, () => {
 function handleLogout() {
   closeAllMenus()
   userStore.logout()
-  router.push({ name: 'homeIndex' })
+  router.push({ name: 'loginIndex' })
 }
 </script>
 

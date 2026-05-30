@@ -47,7 +47,7 @@ async function handleRegister() {
   loading.value = true
   try {
     await userStore.register(username.value, password.value, confirmPassword.value)
-    router.push({ name: 'homeIndex' })
+    router.push({ name: 'loginIndex' })
   } catch (e) {
     errorMsg.value = getErrorMessage(e)
   } finally {

@@ -1,7 +1,9 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 
+const router = useRouter()
 const userStore = useUserStore()
 
 const username = ref('')
@@ -47,7 +49,10 @@ async function handleReset() {
   loading.value = true
   try {
     await userStore.resetPassword(username.value, password.value, confirmPassword.value)
-    successMsg.value = '密码重置成功，请返回登录'
+    successMsg.value = '密码重置成功，正在跳转到登录页面...'
+    setTimeout(() => {
+      router.push({ name: 'loginIndex' })
+    }, 1500)
   } catch (e) {
     errorMsg.value = getErrorMessage(e)
   } finally {
