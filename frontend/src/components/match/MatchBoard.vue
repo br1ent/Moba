@@ -90,7 +90,7 @@ function setOpponent(data) {
 <template>
   <div class="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-8">
     <!-- 标题 -->
-    <h1 class="text-3xl font-bold mb-12">匹配大厅</h1>
+    <h1 class="text-3xl font-bold mb-12">{{ mode === 'single' ? '单人游戏' : '匹配大厅' }}</h1>
 
     <!-- 匹配区域 -->
     <div class="flex items-center gap-16 mb-12">
