@@ -6,6 +6,7 @@ import SinglerPlayerIndex from "@/views/game/SinglerPlayerIndex.vue";
 import MultiPlayerIndex from "@/views/game/MultiPlayerIndex.vue";
 import RanklistIndex from "@/views/ranklist/RanklistIndex.vue";
 import HomeIndex from "@/views/home/HomeIndex.vue";
+import ProfileIndex from "@/views/user/profile/ProfileIndex.vue";
 import NotFoundIndex from "@/views/404/NotFoundIndex.vue";
 
 const router = createRouter({
@@ -43,6 +44,14 @@ const router = createRouter({
       path: '/user/account/reset_password',
       component: ResetPassword,
       name: "resetPasswordIndex",
+      meta: {
+        needLogin: false
+      }
+    },
+    {
+      path: '/user/profile/:id',
+      component: ProfileIndex,
+      name: "profileIndex",
       meta: {
         needLogin: false
       }
