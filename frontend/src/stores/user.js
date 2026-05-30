@@ -41,6 +41,39 @@ export const useUserStore = defineStore('user', () => {
     return res.data
   }
 
+  async function updateUsername(username) {
+    const res = await api.put('/user/profile/update_username/', { username })
+    user.value = res.data
+    return res.data
+  }
+
+  async function updateAvatar(avatarFile) {
+    const formData = new FormData()
+    formData.append('avatar', avatarFile)
+    const res = await api.post('/user/profile/update_avatar/', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    user.value = res.data
+    return res.data
+  }
+
+  async function updatePassword(oldPassword, newPassword, newPasswordConfirm) {
+    const res = await api.put('/user/profile/update_password/', {
+      old_password: oldPassword,
+      new_password: newPassword,
+      new_password_confirm: newPasswordConfirm
+    })
+    return res.data
+  }
+
+  async function updateBio(bio) {
+    const res = await api.put('/user/profile/update_bio/', { bio })
+    user.value = res.data
+    return res.data
+  }
+
   function setAccessToken(token) {
     accessToken.value = token
   }
@@ -50,5 +83,10 @@ export const useUserStore = defineStore('user', () => {
     accessToken.value = ''
   }
 
-  return { user, accessToken, isLoggedIn, login, register, resetPassword, fetchUserinfo, setAccessToken, logout }
+  return {
+    user, accessToken, isLoggedIn,
+    login, register, resetPassword, fetchUserinfo,
+    updateUsername, updateAvatar, updatePassword, updateBio,
+    setAccessToken, logout
+  }
 })
