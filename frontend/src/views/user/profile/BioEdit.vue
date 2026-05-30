@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import { useUserStore } from '@/stores/user'
 
 const userStore = useUserStore()
@@ -33,21 +33,16 @@ async function handleSave() {
     loading.value = false
   }
 }
+
+defineExpose({
+  openModal
+})
 </script>
 
 <template>
   <div class="w-full">
     <!-- 显示区域 -->
-    <div class="flex items-start gap-2">
-      <div class="flex-1">
-        <p class="text-base-content/80 whitespace-pre-wrap">{{ userStore.user?.bio || '这个人很懒，什么都没写~' }}</p>
-      </div>
-      <button class="btn btn-ghost btn-sm btn-circle" @click="openModal">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-        </svg>
-      </button>
-    </div>
+    <p class="text-base-content/80 whitespace-pre-wrap">{{ userStore.user?.bio || '这个人很懒，什么都没写~' }}</p>
 
     <!-- 编辑弹窗 -->
     <dialog :class="{ 'modal modal-open': showModal }" class="modal">

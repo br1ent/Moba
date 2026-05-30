@@ -127,8 +127,8 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <!-- 提示文字 -->
-    <p class="text-sm text-base-content/60 mt-2">点击头像更换</p>
+    <!-- 用户 ID -->
+    <p class="text-sm text-base-content/60 mt-4">玩家id：{{ userStore.user?.id }}</p>
 
     <!-- 隐藏的文件输入 -->
     <input
