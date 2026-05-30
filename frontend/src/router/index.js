@@ -9,8 +9,12 @@ import HomeIndex from "@/views/home/HomeIndex.vue";
 import NotFoundIndex from "@/views/404/NotFoundIndex.vue";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory('/'),
   routes: [
+    {
+      path: '/',
+      redirect: '/home'
+    },
     {
       path: '/home',
       component: HomeIndex,

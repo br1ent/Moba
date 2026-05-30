@@ -32,7 +32,6 @@
     </div>
     <div class="navbar-end">
       <router-link :to="{name: 'loginIndex'}" class="text-base font-bold mr-4">登录</router-link>
-      <router-link :to="{name: 'registerIndex'}" class="text-base font-bold mr-4">注册</router-link>
     </div>
   </div>
 </template>

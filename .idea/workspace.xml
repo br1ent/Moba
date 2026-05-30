@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="626b5d3d-efa3-4b64-aa6f-97fdde52af1b" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Moba.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Moba.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/backend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/backend/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/web/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/web/template/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/web/template/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/web/views.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/navbar/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/navbar/NavBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vite.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/user/account/LoginIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/account/LoginIndex.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/user/account/RegisterIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/account/RegisterIndex.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/user/account/ResetPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/account/ResetPassword.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +79,7 @@
       <option name="presentableId" value="Default" />
       <updated>1779970390776</updated>
       <workItem from="1779970391839" duration="6485000" />
-      <workItem from="1780100919436" duration="1297000" />
+      <workItem from="1780100919436" duration="1967000" />
     </task>
     <servers />
   </component>
