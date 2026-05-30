@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="626b5d3d-efa3-4b64-aa6f-97fdde52af1b" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/navbar/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/navbar/NavBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/game/MultiPlayerIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/game/MultiPlayerIndex.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/game/SinglerPlayerIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/game/SinglerPlayerIndex.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +51,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "git-widget-placeholder": "main",
+    "last_opened_file_path": "F:/MyProject/Moba/backend/media/avatar",
     "list.type.of.created.stylesheet": "CSS",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "com.intellij.python.django.customization.DjangoModulesConfigurable",
@@ -79,7 +80,8 @@
       <option name="presentableId" value="Default" />
       <updated>1779970390776</updated>
       <workItem from="1779970391839" duration="6485000" />
-      <workItem from="1780100919436" duration="10419000" />
+      <workItem from="1780100919436" duration="10627000" />
+      <workItem from="1780121576086" duration="1804000" />
     </task>
     <servers />
   </component>
