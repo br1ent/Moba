@@ -18,7 +18,8 @@ class UserSerializer(serializers.ModelSerializer):
         profile = getattr(obj, 'profile', None)
         if profile and profile.avatar:
             return profile.avatar.url
-        return ''
+        from django.conf import settings
+        return settings.MEDIA_URL + 'avatar/default.png'
 
     def get_rank_score(self, obj):
         profile = getattr(obj, 'profile', None)

@@ -3,24 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="626b5d3d-efa3-4b64-aa6f-97fdde52af1b" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/web/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/web/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/web/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/web/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/web/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/web/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/web/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/web/models/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/web/serializers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/web/serializers/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/web/serializers/user/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/web/serializers/user/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/web/serializers/user/account/register.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/web/serializers/user/account/register.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/web/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/web/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/web/views/user/account/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/web/views/user/account/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/web/views/user/account/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/web/views/user/account/login.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/web/views/user/account/register.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/web/views/user/account/register.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/navbar/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/navbar/NavBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/user/account/LoginIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/account/LoginIndex.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/user/account/RegisterIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/account/RegisterIndex.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/user/account/ResetPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/account/ResetPassword.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +79,7 @@
       <option name="presentableId" value="Default" />
       <updated>1779970390776</updated>
       <workItem from="1779970391839" duration="6485000" />
-      <workItem from="1780100919436" duration="7357000" />
+      <workItem from="1780100919436" duration="8873000" />
     </task>
     <servers />
   </component>

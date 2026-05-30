@@ -128,7 +128,7 @@ if DEBUG:
 else:
     STATIC_ROOT = BASE_DIR / 'static'
 
-MEDIA_URL = 'http://127.0.0.1:8000/media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # 使用JWT认证
