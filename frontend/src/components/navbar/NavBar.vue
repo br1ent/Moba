@@ -31,11 +31,8 @@
       <a class="btn btn-ghost text-xl">Ball Attacker</a>
     </div>
     <div class="navbar-end">
-      <div class="avatar">
-        <div class="w-12 rounded-full mr-4">
-          <img src="https://cdn.acwing.com/media/user/profile/photo/229665_lg_6d5d2ba705.jpg" alt="用户头像">
-        </div>
-      </div>
+      <router-link :to="{name: 'loginIndex'}" class="text-base font-bold mr-4">登录</router-link>
+      <router-link :to="{name: 'registerIndex'}" class="text-base font-bold mr-4">注册</router-link>
     </div>
   </div>
 </template>
