@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="626b5d3d-efa3-4b64-aa6f-97fdde52af1b" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/game/MultiPlayerIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/game/MultiPlayerIndex.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/game/SinglerPlayerIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/game/SinglerPlayerIndex.vue" afterDir="false" />
-    </list>
+    <list default="true" id="626b5d3d-efa3-4b64-aa6f-97fdde52af1b" name="更改" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,6 +60,11 @@
     ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\MyProject\Moba\backend\media\avatar" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -81,7 +82,7 @@
       <updated>1779970390776</updated>
       <workItem from="1779970391839" duration="6485000" />
       <workItem from="1780100919436" duration="10627000" />
-      <workItem from="1780121576086" duration="1804000" />
+      <workItem from="1780121576086" duration="2503000" />
     </task>
     <servers />
   </component>

@@ -16,18 +16,74 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['start'])
+const emit = defineEmits(['start', 'match', 'cancel'])
 
 const userStore = useUserStore()
 const difficulty = ref('easy')
+const matchStatus = ref('ready')
+
+const opponent = ref({
+  avatar: '',
+  username: '',
+  rank_score: 0
+})
 
 const opponentType = computed(() => props.mode === 'single' ? 'ai' : 'player')
 
+const buttonText = computed(() => {
+  if (props.mode === 'single') return '开始游戏'
+  const texts = {
+    ready: '开始匹配',
+    matching: '取消匹配',
+    matched: '匹配成功'
+  }
+  return texts[matchStatus.value]
+})
+
+const buttonClass = computed(() => {
+  if (props.mode === 'single') return 'btn-primary'
+  const classes = {
+    ready: 'btn-primary',
+    matching: 'btn-error',
+    matched: 'btn-success'
+  }
+  return classes[matchStatus.value]
+})
+
+const buttonDisabled = computed(() => {
+  return props.mode === 'multi' && matchStatus.value === 'matched'
+})
+
 function handleStart() {
-  emit('start', {
-    mode: props.mode,
-    difficulty: difficulty.value
-  })
+  if (props.mode === 'single') {
+    emit('start', {
+      mode: props.mode,
+      difficulty: difficulty.value
+    })
+  } else {
+    if (matchStatus.value === 'ready') {
+      matchStatus.value = 'matching'
+      emit('match', {
+        mode: props.mode,
+        status: 'matching'
+      })
+    } else if (matchStatus.value === 'matching') {
+      matchStatus.value = 'ready'
+      opponent.value = { avatar: '', username: '', rank_score: 0 }
+      emit('cancel', {
+        mode: props.mode,
+        status: 'ready'
+      })
+    }
+  }
+}
+
+function setMatchStatus(status) {
+  matchStatus.value = status
+}
+
+function setOpponent(data) {
+  opponent.value = data
 }
 </script>
 
@@ -63,14 +119,24 @@ function handleStart() {
           :type="opponentType"
           :ai-avatar="aiAvatar"
           :ai-name="'Bot'"
+          :match-status="matchStatus"
+          :opponent-avatar="opponent.avatar"
+          :opponent-name="opponent.username"
+          :opponent-rank-score="opponent.rank_score"
           v-model="difficulty"
         />
       </div>
     </div>
 
-    <!-- 开始游戏按钮 -->
-    <button class="btn btn-primary btn-lg px-16" @click="handleStart">
-      开始游戏
+    <!-- 按钮 -->
+    <button
+      class="btn btn-lg px-16"
+      :class="[buttonClass, { 'btn-disabled': buttonDisabled }]"
+      :disabled="buttonDisabled"
+      @click="handleStart"
+    >
+      <span v-if="matchStatus === 'matching'" class="loading loading-spinner loading-sm mr-2"></span>
+      {{ buttonText }}
     </button>
   </div>
 </template>
