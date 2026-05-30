@@ -151,6 +151,10 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'web.User'
+
 # 配置跨域
 CORS_ALLOW_CREDENTIALS = True
 
