@@ -1,5 +1,14 @@
 <script setup>
+import { useUserStore } from '@/stores/user'
+import { useRouter } from 'vue-router'
 
+const userStore = useUserStore()
+const router = useRouter()
+
+function handleLogout() {
+  userStore.logout()
+  router.push({ name: 'homeIndex' })
+}
 </script>
 
 <template>
@@ -31,7 +40,28 @@
       <a class="btn btn-ghost text-xl">Ball Attacker</a>
     </div>
     <div class="navbar-end">
-      <router-link :to="{name: 'loginIndex'}" class="text-base font-bold mr-4">登录</router-link>
+      <template v-if="userStore.isLoggedIn && userStore.user">
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+            <div class="w-10 rounded-full">
+              <img :src="userStore.user.avatar" alt="avatar" />
+            </div>
+          </div>
+          <ul
+            tabindex="0"
+            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+            <li>
+              <router-link :to="{name: 'homeIndex'}">个人空间</router-link>
+            </li>
+            <li>
+              <a @click="handleLogout">退出</a>
+            </li>
+          </ul>
+        </div>
+      </template>
+      <template v-else>
+        <router-link :to="{name: 'loginIndex'}" class="text-base font-bold mr-4">登录</router-link>
+      </template>
     </div>
   </div>
 </template>

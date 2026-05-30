@@ -3,11 +3,22 @@ from django.db import models
 
 
 class User(AbstractUser):
-    avatar = models.ImageField(upload_to='avatar/', default='', blank=True)
-    rank_score = models.IntegerField(default=1000, verbose_name='排位分')
-    bio = models.TextField(default='', blank=True, verbose_name='个人简介')
-
     class Meta:
         db_table = 'user'
-        verbose_name = 'user'
+        verbose_name = 'User'
         verbose_name_plural = verbose_name
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    avatar = models.ImageField(upload_to='avatar/', default='avatar/default.png', blank=True)
+    rank_score = models.IntegerField(default=1000, verbose_name='Rank Score')
+    bio = models.TextField(default='', blank=True, verbose_name='Bio')
+
+    class Meta:
+        db_table = 'user_profile'
+        verbose_name = 'User Profile'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return f'{self.user.username} profile'

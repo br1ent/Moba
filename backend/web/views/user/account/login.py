@@ -1,7 +1,8 @@
-from rest_framework.response import Response
+from django.conf import settings
+from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
-from web.serializers import LoginSerializer
+from web.serializers import LoginSerializer, UserSerializer
 
 
 class LoginView(APIView):
@@ -10,10 +11,22 @@ class LoginView(APIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         refresh = RefreshToken.for_user(user)
-        return Response({
+
+        response = JsonResponse({
             'message': '登录成功',
-            'token': {
-                'access': str(refresh.access_token),
-                'refresh': str(refresh),
-            }
+            'access': str(refresh.access_token),
+            'user': UserSerializer(user).data,
         })
+
+        is_secure = not settings.DEBUG
+        response.set_cookie(
+            'refresh_token',
+            str(refresh),
+            httponly=True,
+            samesite='Lax',
+            secure=is_secure,
+            max_age=7 * 24 * 60 * 60,
+            path='/',
+        )
+
+        return response

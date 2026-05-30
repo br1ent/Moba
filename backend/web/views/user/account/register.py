@@ -1,8 +1,9 @@
+from django.conf import settings
+from django.http import JsonResponse
 from rest_framework.generics import CreateAPIView
-from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
-from web.serializers import RegisterSerializer
+from web.serializers import RegisterSerializer, UserSerializer
 
 User = get_user_model()
 
@@ -16,10 +17,22 @@ class RegisterView(CreateAPIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
         refresh = RefreshToken.for_user(user)
-        return Response({
+
+        response = JsonResponse({
             'message': '注册成功',
-            'token': {
-                'access': str(refresh.access_token),
-                'refresh': str(refresh),
-            }
+            'access': str(refresh.access_token),
+            'user': UserSerializer(user).data,
         })
+
+        is_secure = not settings.DEBUG
+        response.set_cookie(
+            'refresh_token',
+            str(refresh),
+            httponly=True,
+            samesite='Lax',
+            secure=is_secure,
+            max_age=7 * 24 * 60 * 60,
+            path='/',
+        )
+
+        return response

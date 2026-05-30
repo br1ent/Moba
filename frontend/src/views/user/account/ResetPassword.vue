@@ -1,9 +1,59 @@
 <script setup>
 import { ref } from 'vue'
+import { useUserStore } from '@/stores/user'
+
+const userStore = useUserStore()
 
 const username = ref('')
 const password = ref('')
 const confirmPassword = ref('')
+const errorMsg = ref('')
+const successMsg = ref('')
+const loading = ref(false)
+
+function getErrorMessage(e) {
+  if (!e.response) return '网络异常，请稍后重试'
+  const data = e.response.data
+  if (data?.username) {
+    const msg = Array.isArray(data.username) ? data.username[0] : data.username
+    if (msg.includes('不存在')) return '该用户不存在'
+    return msg
+  }
+  if (data?.password) {
+    return Array.isArray(data.password) ? data.password[0] : data.password
+  }
+  if (data?.password_confirm) {
+    return Array.isArray(data.password_confirm) ? data.password_confirm[0] : data.password_confirm
+  }
+  if (data?.detail) return data.detail
+  return '系统出错，请稍后重试'
+}
+
+async function handleReset() {
+  errorMsg.value = ''
+  successMsg.value = ''
+  if (!username.value.trim()) {
+    errorMsg.value = '请输入用户名'
+    return
+  }
+  if (!password.value) {
+    errorMsg.value = '请输入新密码'
+    return
+  }
+  if (password.value !== confirmPassword.value) {
+    errorMsg.value = '两次密码不一致'
+    return
+  }
+  loading.value = true
+  try {
+    await userStore.resetPassword(username.value, password.value, confirmPassword.value)
+    successMsg.value = '密码重置成功，请返回登录'
+  } catch (e) {
+    errorMsg.value = getErrorMessage(e)
+  } finally {
+    loading.value = false
+  }
+}
 </script>
 
 <template>
@@ -14,7 +64,7 @@ const confirmPassword = ref('')
         <p class="text-center text-sm text-base-content/60 mb-4">
           输入你的用户名和新密码来重置
         </p>
-        <form @submit.prevent>
+        <form @submit.prevent="handleReset">
           <fieldset class="fieldset">
             <label class="fieldset-legend">用户名</label>
             <input
@@ -38,7 +88,11 @@ const confirmPassword = ref('')
               placeholder="请再次输入新密码"
             />
           </fieldset>
-          <button class="btn btn-primary w-full mt-6">重置密码</button>
+          <div v-if="errorMsg" class="text-error text-sm mt-2">{{ errorMsg }}</div>
+          <div v-if="successMsg" class="text-success text-sm mt-2">{{ successMsg }}</div>
+          <button class="btn btn-primary w-full mt-6" :disabled="loading">
+            {{ loading ? '重置中...' : '重置密码' }}
+          </button>
         </form>
         <div class="text-center mt-4">
           <router-link :to="{ name: 'loginIndex' }" class="link link-primary">
