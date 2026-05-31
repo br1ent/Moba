@@ -1,13 +1,16 @@
 import { PLAYER_SIZE, PLAYER_SPEED } from './config.js'
+import { Bullet } from './bullet.js'
 
 export class Bot {
-  constructor(color) {
+  constructor(color, shootInterval) {
     this.x = 0
     this.y = 0
     this.targetX = 0
     this.targetY = 0
     this.isMoving = false
     this.color = color || getRandomColor()
+    this.shootInterval = shootInterval || 1500
+    this.lastShootTime = Date.now() + Math.random() * this.shootInterval
   }
 
   init(canvasWidth, canvasHeight, excludeX, excludeY) {
@@ -40,6 +43,18 @@ export class Bot {
     this.targetX = Math.random() * (this.canvasWidth - PLAYER_SIZE * 2) + PLAYER_SIZE
     this.targetY = Math.random() * (this.canvasHeight - PLAYER_SIZE * 2) + PLAYER_SIZE
     this.isMoving = true
+  }
+
+  tryShoot() {
+    const now = Date.now()
+    if (now - this.lastShootTime < this.shootInterval) return null
+    this.lastShootTime = now
+
+    const angle = Math.random() * Math.PI * 2
+    const targetX = this.x + Math.cos(angle) * 100
+    const targetY = this.y + Math.sin(angle) * 100
+
+    return new Bullet(this.x, this.y, targetX, targetY, this.color)
   }
 
   update() {

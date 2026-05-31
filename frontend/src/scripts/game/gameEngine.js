@@ -1,4 +1,4 @@
-import { SHOOT_COOLDOWN, DIFFICULTY_BOT_COUNT } from './config.js'
+import { SHOOT_COOLDOWN, DIFFICULTY_BOT_COUNT, DIFFICULTY_BOT_SHOOT_INTERVAL } from './config.js'
 import { Player } from './player.js'
 import { Bullet } from './bullet.js'
 import { Bot } from './bot.js'
@@ -27,10 +27,11 @@ export class GameEngine {
 
   createBots() {
     const count = DIFFICULTY_BOT_COUNT[this.difficulty] || DIFFICULTY_BOT_COUNT.easy
+    const shootInterval = DIFFICULTY_BOT_SHOOT_INTERVAL[this.difficulty] || DIFFICULTY_BOT_SHOOT_INTERVAL.easy
     this.bots = []
 
     for (let i = 0; i < count; i++) {
-      const bot = new Bot()
+      const bot = new Bot(null, shootInterval)
       bot.init(this.canvas.width, this.canvas.height, this.player.x, this.player.y)
       this.bots.push(bot)
     }
@@ -52,6 +53,10 @@ export class GameEngine {
 
     for (const bot of this.bots) {
       bot.update()
+      const bullet = bot.tryShoot()
+      if (bullet) {
+        this.bullets.push(bullet)
+      }
     }
 
     for (let i = this.bullets.length - 1; i >= 0; i--) {
