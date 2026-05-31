@@ -63,6 +63,14 @@ export class Bot {
     return new Bullet(this.x, this.y, targetX, targetY, this.color, false)
   }
 
+  tryShootAtPlayer(playerX, playerY) {
+    const now = Date.now()
+    if (now - this.lastShootTime < this.shootInterval) return null
+    this.lastShootTime = now
+
+    return new Bullet(this.x, this.y, playerX, playerY, this.color, false)
+  }
+
   update() {
     if (!this.isMoving) {
       this.pickNewTarget()

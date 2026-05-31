@@ -73,9 +73,20 @@ export class GameEngine {
     this.player.update()
     this.player.updateShield(now)
 
-    for (const bot of this.bots) {
+    const shouldAimAtPlayer = (this.difficulty === 'hard' || this.difficulty === 'nightmare')
+    const aimBotCount = shouldAimAtPlayer ? Math.ceil(this.bots.length / 2) : 0
+
+    for (let i = 0; i < this.bots.length; i++) {
+      const bot = this.bots[i]
       bot.update()
-      const bullet = bot.tryShoot()
+      
+      let bullet = null
+      if (i < aimBotCount) {
+        bullet = bot.tryShootAtPlayer(this.player.x, this.player.y)
+      } else {
+        bullet = bot.tryShoot()
+      }
+      
       if (bullet) {
         this.bullets.push(bullet)
       }

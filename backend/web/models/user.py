@@ -12,7 +12,7 @@ class User(AbstractUser):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     avatar = models.ImageField(upload_to='avatar/', default='avatar/default.png', blank=True)
-    rank_score = models.IntegerField(default=1000, verbose_name='Rank Score')
+    rank_score = models.IntegerField(default=1500, verbose_name='Rank Score')
     bio = models.TextField(default='', blank=True, verbose_name='Bio')
 
     class Meta:
