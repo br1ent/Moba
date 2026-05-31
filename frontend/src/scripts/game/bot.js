@@ -1,4 +1,4 @@
-import { PLAYER_SIZE, PLAYER_SPEED } from './config.js'
+import { PLAYER_SIZE, PLAYER_SPEED, BOT_HP } from './config.js'
 import { Bullet } from './bullet.js'
 
 export class Bot {
@@ -13,6 +13,8 @@ export class Bot {
     this.lastShootTime = Date.now() + Math.random() * this.shootInterval
     this.canvasWidth = 0
     this.playAreaHeight = 0
+    this.hp = BOT_HP
+    this.maxHp = BOT_HP
   }
 
   init(canvasWidth, playAreaHeight, excludeX, excludeY) {
@@ -92,6 +94,23 @@ export class Bot {
     ctx.beginPath()
     ctx.arc(this.x, this.y, PLAYER_SIZE / 2, 0, Math.PI * 2)
     ctx.stroke()
+
+    const barWidth = PLAYER_SIZE
+    const barHeight = 5
+    const barX = this.x - barWidth / 2
+    const barY = this.y - PLAYER_SIZE / 2 - 10
+
+    ctx.fillStyle = '#333'
+    ctx.fillRect(barX, barY, barWidth, barHeight)
+
+    const hpPercent = this.hp / this.maxHp
+    const hpColor = hpPercent > 0.5 ? '#2ecc71' : hpPercent > 0.25 ? '#f39c12' : '#e74c3c'
+    ctx.fillStyle = hpColor
+    ctx.fillRect(barX, barY, barWidth * hpPercent, barHeight)
+
+    ctx.strokeStyle = '#555'
+    ctx.lineWidth = 1
+    ctx.strokeRect(barX, barY, barWidth, barHeight)
   }
 }
 

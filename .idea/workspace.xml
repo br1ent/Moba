@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="626b5d3d-efa3-4b64-aa6f-97fdde52af1b" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/game/GameCanvas.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/game/GameCanvas.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/scripts/game/bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/scripts/game/bot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/scripts/game/bullet.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/scripts/game/bullet.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/scripts/game/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/scripts/game/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/scripts/game/gameEngine.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/scripts/game/gameEngine.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/scripts/game/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/scripts/game/player.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +89,7 @@
       <workItem from="1779970391839" duration="6485000" />
       <workItem from="1780100919436" duration="10627000" />
       <workItem from="1780121576086" duration="6483000" />
-      <workItem from="1780187861191" duration="4750000" />
+      <workItem from="1780187861191" duration="5349000" />
     </task>
     <servers />
   </component>

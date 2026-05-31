@@ -6,6 +6,7 @@ export const SHOOT_COOLDOWN = 400
 export const HUD_HEIGHT = 100
 export const MAX_HEALTH = 100
 export const BULLET_DAMAGE = 20
+export const BOT_HP = 3
 
 export const DIFFICULTY_BOT_COUNT = {
   easy: 5,

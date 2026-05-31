@@ -21,6 +21,9 @@ const emit = defineEmits(['exit'])
 
 const canvasRef = ref(null)
 const health = ref(MAX_HEALTH)
+const gameOver = ref(false)
+const gameResult = ref(null)
+const gameDuration = ref('00:00')
 let engine = null
 
 const skillState = reactive({
@@ -57,6 +60,8 @@ function updateSkillState() {
 }
 
 function handleKeyDown(e) {
+  if (gameOver.value) return
+  
   if (e.key === 'q' || e.key === 'Q') {
     engine.handleShoot()
   }
@@ -87,6 +92,11 @@ onMounted(() => {
     engine.onExit = () => emit('exit')
     engine.onHealthChange = (value) => { health.value = value }
     engine.onSkillUpdate = updateSkillState
+    engine.onGameOver = (result, duration) => {
+      gameOver.value = true
+      gameResult.value = result
+      gameDuration.value = duration
+    }
     await engine.init()
 
     window.addEventListener('keydown', handleKeyDown)
@@ -152,6 +162,19 @@ onUnmounted(() => {
           <span class="skill-key">G</span>
           <span class="skill-count" v-if="skillState.potionUses > 0">x{{ skillState.potionUses }}</span>
         </div>
+      </div>
+    </div>
+
+    <div v-if="gameOver" class="game-over-overlay">
+      <div class="game-over-card">
+        <h1 class="result-title" :class="gameResult">
+          {{ gameResult === 'win' ? '你胜利了！' : '你失败了！' }}
+        </h1>
+        <div class="duration-section">
+          <span class="duration-label">游戏时长</span>
+          <span class="duration-value">{{ gameDuration }}</span>
+        </div>
+        <button class="return-btn" @click="handleExit">返回</button>
       </div>
     </div>
   </div>
@@ -330,5 +353,82 @@ onUnmounted(() => {
   border-radius: 10px;
   min-width: 20px;
   text-align: center;
+}
+
+.game-over-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.game-over-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 48px 64px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  min-width: 320px;
+}
+
+.result-title {
+  font-size: 42px;
+  font-weight: bold;
+  margin-bottom: 28px;
+}
+
+.result-title.win {
+  color: #2ecc71;
+}
+
+.result-title.lose {
+  color: #e74c3c;
+}
+
+.duration-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 36px;
+  padding: 16px 24px;
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+
+.duration-label {
+  color: #888;
+  font-size: 14px;
+}
+
+.duration-value {
+  color: #333;
+  font-size: 32px;
+  font-weight: bold;
+  font-family: monospace;
+}
+
+.return-btn {
+  padding: 14px 56px;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+}
+
+.return-btn:hover {
+  background: linear-gradient(135deg, #2980b9, #2471a3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(52, 152, 219, 0.5);
 }
 </style>

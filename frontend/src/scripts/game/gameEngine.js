@@ -23,6 +23,11 @@ export class GameEngine {
     this.skillSystem = new SkillSystem(this.difficulty)
     this.effects = []
     this.onSkillUpdate = null
+    this.gameOver = false
+    this.gameResult = null
+    this.onGameOver = null
+    this.gameStartTime = Date.now()
+    this.gameEndTime = null
   }
 
   async init() {
@@ -55,7 +60,9 @@ export class GameEngine {
   }
 
   gameLoop() {
-    this.update()
+    if (!this.gameOver) {
+      this.update()
+    }
     this.render()
     this.animationId = requestAnimationFrame(() => this.gameLoop())
   }
@@ -93,6 +100,32 @@ export class GameEngine {
     if (this.onSkillUpdate) {
       this.onSkillUpdate()
     }
+
+    this.checkGameOver()
+  }
+
+  getGameDuration() {
+    const end = this.gameEndTime || Date.now()
+    const duration = Math.floor((end - this.gameStartTime) / 1000)
+    const minutes = Math.floor(duration / 60)
+    const seconds = duration % 60
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+  }
+
+  checkGameOver() {
+    if (this.gameOver) return
+
+    if (this.bots.length === 0) {
+      this.gameOver = true
+      this.gameResult = 'win'
+      this.gameEndTime = Date.now()
+      if (this.onGameOver) this.onGameOver('win', this.getGameDuration())
+    } else if (this.health <= 0) {
+      this.gameOver = true
+      this.gameResult = 'lose'
+      this.gameEndTime = Date.now()
+      if (this.onGameOver) this.onGameOver('lose', this.getGameDuration())
+    }
   }
 
   checkCollisions() {
@@ -121,13 +154,21 @@ export class GameEngine {
           if (dist < hitDist) {
             this.bullets.splice(i, 1)
             
+            bot.hp--
+            
             const pushAngle = Math.atan2(dy, dx)
-            bot.x -= Math.cos(pushAngle) * 15
-            bot.y -= Math.sin(pushAngle) * 15
+            bot.x -= Math.cos(pushAngle) * 40
+            bot.y -= Math.sin(pushAngle) * 40
             bot.x = Math.max(half, Math.min(bot.x, this.canvas.width - half))
             bot.y = Math.max(half, Math.min(bot.y, this.playAreaHeight - half))
             
+            if (bot.hp <= 0) {
+              this.bots.splice(j, 1)
+              this.effects.push(new BotDeathEffect(bot.x, bot.y, bot.color))
+            }
+            
             this.effects.push(new BulletHitEffect(b.x, b.y))
+            this.effects.push(new BounceTrailEffect(b.x, b.y, bot.x, bot.y))
             break
           }
         }
@@ -149,10 +190,13 @@ export class GameEngine {
             }
             
             const pushAngle = Math.atan2(dy, dx)
-            this.player.x -= Math.cos(pushAngle) * 15
-            this.player.y -= Math.sin(pushAngle) * 15
+            this.player.x -= Math.cos(pushAngle) * 30
+            this.player.y -= Math.sin(pushAngle) * 30
             this.player.x = Math.max(half, Math.min(this.player.x, this.canvas.width - half))
             this.player.y = Math.max(half, Math.min(this.player.y, this.playAreaHeight - half))
+            
+            this.effects.push(new BulletHitEffect(b.x, b.y))
+            this.effects.push(new BounceTrailEffect(b.x, b.y, this.player.x, this.player.y))
           }
         }
       }
@@ -502,13 +546,29 @@ class BulletHitEffect {
     this.x = x
     this.y = y
     this.alpha = 1
-    this.life = 8
-    this.maxLife = 8
+    this.life = 12
+    this.maxLife = 12
+    this.particles = []
+    for (let i = 0; i < 8; i++) {
+      const angle = Math.random() * Math.PI * 2
+      const speed = 1 + Math.random() * 2
+      this.particles.push({
+        x: 0,
+        y: 0,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        size: 2 + Math.random() * 2
+      })
+    }
   }
 
   update() {
     this.life--
     this.alpha = this.life / this.maxLife
+    for (const p of this.particles) {
+      p.x += p.vx
+      p.y += p.vy
+    }
   }
 
   isDead() {
@@ -520,9 +580,70 @@ class BulletHitEffect {
     ctx.globalAlpha = Math.max(0, this.alpha)
     
     ctx.fillStyle = '#e74c3c'
+    for (const p of this.particles) {
+      ctx.beginPath()
+      ctx.arc(this.x + p.x, this.y + p.y, p.size * (this.life / this.maxLife), 0, Math.PI * 2)
+      ctx.fill()
+    }
+    
+    ctx.restore()
+  }
+}
+
+class BotDeathEffect {
+  constructor(x, y, color) {
+    this.x = x
+    this.y = y
+    this.color = color
+    this.alpha = 1
+    this.life = 25
+    this.maxLife = 25
+    this.particles = []
+    for (let i = 0; i < 16; i++) {
+      const angle = (Math.PI * 2 / 16) * i
+      const speed = 2 + Math.random() * 3
+      this.particles.push({
+        x: 0,
+        y: 0,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        size: 3 + Math.random() * 4
+      })
+    }
+  }
+
+  update() {
+    this.life--
+    this.alpha = this.life / this.maxLife
+    for (const p of this.particles) {
+      p.x += p.vx
+      p.y += p.vy
+      p.vx *= 0.96
+      p.vy *= 0.96
+    }
+  }
+
+  isDead() {
+    return this.life <= 0
+  }
+
+  render(ctx) {
+    ctx.save()
+    ctx.globalAlpha = Math.max(0, this.alpha)
+    
+    ctx.fillStyle = this.color
+    for (const p of this.particles) {
+      ctx.beginPath()
+      ctx.arc(this.x + p.x, this.y + p.y, p.size * (this.life / this.maxLife), 0, Math.PI * 2)
+      ctx.fill()
+    }
+
+    ctx.strokeStyle = '#fff'
+    ctx.lineWidth = 2
+    ctx.globalAlpha = Math.max(0, this.alpha * 0.5)
     ctx.beginPath()
-    ctx.arc(this.x, this.y, BULLET_SIZE, 0, Math.PI * 2)
-    ctx.fill()
+    ctx.arc(this.x, this.y, PLAYER_SIZE / 2 * (1 + (1 - this.life / this.maxLife)), 0, Math.PI * 2)
+    ctx.stroke()
     
     ctx.restore()
   }
