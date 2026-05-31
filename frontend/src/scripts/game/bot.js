@@ -11,23 +11,26 @@ export class Bot {
     this.color = color || getRandomColor()
     this.shootInterval = shootInterval || 1500
     this.lastShootTime = Date.now() + Math.random() * this.shootInterval
+    this.canvasWidth = 0
+    this.playAreaHeight = 0
   }
 
-  init(canvasWidth, canvasHeight, excludeX, excludeY) {
+  init(canvasWidth, playAreaHeight, excludeX, excludeY) {
     this.canvasWidth = canvasWidth
-    this.canvasHeight = canvasHeight
+    this.playAreaHeight = playAreaHeight
     this.spawnAtSafePosition(excludeX, excludeY)
     this.pickNewTarget()
   }
 
   spawnAtSafePosition(excludeX, excludeY) {
+    const half = PLAYER_SIZE / 2
     const minDist = PLAYER_SIZE * 3
     let attempts = 0
     const maxAttempts = 100
 
     do {
-      this.x = Math.random() * (this.canvasWidth - PLAYER_SIZE * 2) + PLAYER_SIZE
-      this.y = Math.random() * (this.canvasHeight - PLAYER_SIZE * 2) + PLAYER_SIZE
+      this.x = Math.random() * (this.canvasWidth - PLAYER_SIZE) + half
+      this.y = Math.random() * (this.playAreaHeight - PLAYER_SIZE) + half
       attempts++
 
       if (attempts >= maxAttempts) break
@@ -40,8 +43,9 @@ export class Bot {
   }
 
   pickNewTarget() {
-    this.targetX = Math.random() * (this.canvasWidth - PLAYER_SIZE * 2) + PLAYER_SIZE
-    this.targetY = Math.random() * (this.canvasHeight - PLAYER_SIZE * 2) + PLAYER_SIZE
+    const half = PLAYER_SIZE / 2
+    this.targetX = Math.random() * (this.canvasWidth - PLAYER_SIZE) + half
+    this.targetY = Math.random() * (this.playAreaHeight - PLAYER_SIZE) + half
     this.isMoving = true
   }
 

@@ -10,6 +10,7 @@ export class Player {
     this.avatarUrl = avatarUrl
     this.avatarImg = null
     this.avatarLoaded = false
+    this.playAreaHeight = 0
   }
 
   async loadAvatar() {
@@ -21,17 +22,21 @@ export class Player {
     }
   }
 
-  init(canvasWidth, canvasHeight) {
-    this.x = Math.random() * (canvasWidth - PLAYER_SIZE * 2) + PLAYER_SIZE
-    this.y = Math.random() * (canvasHeight - PLAYER_SIZE * 2) + PLAYER_SIZE
+  init(canvasWidth, playAreaHeight) {
+    this.canvasWidth = canvasWidth
+    this.playAreaHeight = playAreaHeight
+    const half = PLAYER_SIZE / 2
+    this.x = Math.random() * (canvasWidth - PLAYER_SIZE) + half
+    this.y = Math.random() * (playAreaHeight - PLAYER_SIZE) + half
     this.targetX = this.x
     this.targetY = this.y
     this.isMoving = false
   }
 
   moveTo(x, y) {
-    this.targetX = x
-    this.targetY = y
+    const half = PLAYER_SIZE / 2
+    this.targetX = Math.max(half, Math.min(x, this.canvasWidth - half))
+    this.targetY = Math.max(half, Math.min(y, this.playAreaHeight - half))
     this.isMoving = true
   }
 
