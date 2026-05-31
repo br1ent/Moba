@@ -7,10 +7,12 @@ import GameCanvas from '@/components/game/GameCanvas.vue'
 const userStore = useUserStore()
 const botAvatar = '/media/avatar/bot.jpg'
 const gameStarted = ref(false)
+const difficulty = ref('easy')
 
 const userAvatar = computed(() => userStore.user?.avatar || '')
 
 function handleStart(options) {
+  difficulty.value = options.difficulty
   gameStarted.value = true
 }
 
@@ -20,7 +22,7 @@ function handleExit() {
 </script>
 
 <template>
-  <GameCanvas v-if="gameStarted" :avatar="userAvatar" @exit="handleExit" />
+  <GameCanvas v-if="gameStarted" :avatar="userAvatar" :difficulty="difficulty" @exit="handleExit" />
   <MatchBoard v-else mode="single" :ai-avatar="botAvatar" @start="handleStart" />
 </template>
 

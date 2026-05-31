@@ -1,24 +1,39 @@
-import { SHOOT_COOLDOWN } from './config.js'
+import { SHOOT_COOLDOWN, DIFFICULTY_BOT_COUNT } from './config.js'
 import { Player } from './player.js'
 import { Bullet } from './bullet.js'
+import { Bot } from './bot.js'
 
 export class GameEngine {
-  constructor(canvas, avatarUrl) {
+  constructor(canvas, avatarUrl, difficulty) {
     this.canvas = canvas
     this.ctx = canvas.getContext('2d')
     this.player = new Player(avatarUrl)
     this.bullets = []
+    this.bots = []
     this.mousePos = { x: 0, y: 0 }
     this.lastShootTime = 0
     this.animationId = null
     this.onExit = null
+    this.difficulty = difficulty || 'easy'
   }
 
   async init() {
     this.resize()
     await this.player.loadAvatar()
     this.player.init(this.canvas.width, this.canvas.height)
+    this.createBots()
     this.gameLoop()
+  }
+
+  createBots() {
+    const count = DIFFICULTY_BOT_COUNT[this.difficulty] || DIFFICULTY_BOT_COUNT.easy
+    this.bots = []
+
+    for (let i = 0; i < count; i++) {
+      const bot = new Bot()
+      bot.init(this.canvas.width, this.canvas.height, this.player.x, this.player.y)
+      this.bots.push(bot)
+    }
   }
 
   resize() {
@@ -35,6 +50,10 @@ export class GameEngine {
   update() {
     this.player.update()
 
+    for (const bot of this.bots) {
+      bot.update()
+    }
+
     for (let i = this.bullets.length - 1; i >= 0; i--) {
       this.bullets[i].update()
       if (this.bullets[i].isOutOfBounds(this.canvas.width, this.canvas.height)) {
@@ -47,6 +66,10 @@ export class GameEngine {
     const ctx = this.ctx
     ctx.fillStyle = '#000'
     ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+
+    for (const bot of this.bots) {
+      bot.render(ctx)
+    }
 
     for (const bullet of this.bullets) {
       bullet.render(ctx)

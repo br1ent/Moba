@@ -6,6 +6,10 @@ const props = defineProps({
   avatar: {
     type: String,
     required: true
+  },
+  difficulty: {
+    type: String,
+    default: 'easy'
   }
 })
 
@@ -43,7 +47,7 @@ function handleResize() {
 
 onMounted(() => {
   nextTick(async () => {
-    engine = new GameEngine(canvasRef.value, props.avatar)
+    engine = new GameEngine(canvasRef.value, props.avatar, props.difficulty)
     engine.onExit = () => emit('exit')
     await engine.init()
 

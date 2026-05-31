@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="626b5d3d-efa3-4b64-aa6f-97fdde52af1b" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/game/SinglerPlayerIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/game/SinglerPlayerIndex.vue" afterDir="false" />
-    </list>
+    <list default="true" id="626b5d3d-efa3-4b64-aa6f-97fdde52af1b" name="更改" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,7 +83,7 @@
       <workItem from="1779970391839" duration="6485000" />
       <workItem from="1780100919436" duration="10627000" />
       <workItem from="1780121576086" duration="6483000" />
-      <workItem from="1780187861191" duration="1099000" />
+      <workItem from="1780187861191" duration="1534000" />
     </task>
     <servers />
   </component>
