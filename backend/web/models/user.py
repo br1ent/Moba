@@ -12,7 +12,8 @@ class User(AbstractUser):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     avatar = models.ImageField(upload_to='avatar/', default='avatar/default.png', blank=True)
-    rank_score = models.IntegerField(default=1500, verbose_name='Rank Score')
+    rank_score = models.IntegerField(default=1500, verbose_name='历史最高天梯分')
+    current_rank_score = models.IntegerField(default=1500, verbose_name='当前天梯分')
     bio = models.TextField(default='', blank=True, verbose_name='Bio')
 
     class Meta:

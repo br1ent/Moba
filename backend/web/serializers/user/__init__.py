@@ -8,11 +8,12 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     avatar = serializers.SerializerMethodField()
     rank_score = serializers.SerializerMethodField()
+    current_rank_score = serializers.SerializerMethodField()
     bio = serializers.SerializerMethodField()
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'avatar', 'rank_score', 'bio']
+        fields = ['id', 'username', 'avatar', 'rank_score', 'current_rank_score', 'bio']
 
     def get_avatar(self, obj):
         profile = getattr(obj, 'profile', None)
@@ -23,7 +24,11 @@ class UserSerializer(serializers.ModelSerializer):
 
     def get_rank_score(self, obj):
         profile = getattr(obj, 'profile', None)
-        return profile.rank_score if profile else 1000
+        return profile.rank_score if profile else 1500
+
+    def get_current_rank_score(self, obj):
+        profile = getattr(obj, 'profile', None)
+        return profile.current_rank_score if profile else 1500
 
     def get_bio(self, obj):
         profile = getattr(obj, 'profile', None)

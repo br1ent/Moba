@@ -49,10 +49,16 @@ onMounted(async () => {
                 </div>
               </div>
 
-              <!-- 天梯分 -->
+              <!-- 当前天梯分 -->
+              <div>
+                <span class="text-sm font-medium text-base-content/60">当前天梯分</span>
+                <p class="text-lg font-semibold mt-3">{{ userStore.user?.current_rank_score || 1500 }}</p>
+              </div>
+
+              <!-- 历史最高天梯分 -->
               <div>
                 <span class="text-sm font-medium text-base-content/60">历史最高天梯分</span>
-                <p class="text-lg font-semibold mt-3">{{ userStore.user?.rank_score || 0 }}</p>
+                <p class="text-lg font-semibold mt-3">{{ userStore.user?.rank_score || 1500 }}</p>
               </div>
             </div>
           </div>
