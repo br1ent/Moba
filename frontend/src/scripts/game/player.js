@@ -1,4 +1,4 @@
-import { PLAYER_SIZE, PLAYER_SPEED } from './config.js'
+import { PLAYER_SIZE, PLAYER_SPEED, SKILLS } from './config.js'
 
 export class Player {
   constructor(avatarUrl) {
@@ -10,7 +10,11 @@ export class Player {
     this.avatarUrl = avatarUrl
     this.avatarImg = null
     this.avatarLoaded = false
+    this.canvasWidth = 0
     this.playAreaHeight = 0
+    this.shieldActive = false
+    this.shieldEndTime = 0
+    this.shieldPulse = 0
   }
 
   async loadAvatar() {
@@ -31,6 +35,9 @@ export class Player {
     this.targetX = this.x
     this.targetY = this.y
     this.isMoving = false
+    this.shieldActive = false
+    this.shieldEndTime = 0
+    this.shieldPulse = 0
   }
 
   moveTo(x, y) {
@@ -38,6 +45,30 @@ export class Player {
     this.targetX = Math.max(half, Math.min(x, this.canvasWidth - half))
     this.targetY = Math.max(half, Math.min(y, this.playAreaHeight - half))
     this.isMoving = true
+  }
+
+  flashTo(x, y) {
+    const half = PLAYER_SIZE / 2
+    this.x = Math.max(half, Math.min(x, this.canvasWidth - half))
+    this.y = Math.max(half, Math.min(y, this.playAreaHeight - half))
+    this.targetX = this.x
+    this.targetY = this.y
+    this.isMoving = false
+  }
+
+  activateShield(now) {
+    this.shieldActive = true
+    this.shieldEndTime = now + SKILLS.SHIELD_DURATION
+    this.shieldPulse = 0
+  }
+
+  updateShield(now) {
+    if (this.shieldActive) {
+      this.shieldPulse += 0.1
+      if (now >= this.shieldEndTime) {
+        this.shieldActive = false
+      }
+    }
   }
 
   stop() {
@@ -91,6 +122,34 @@ export class Player {
     ctx.beginPath()
     ctx.arc(this.x, this.y, PLAYER_SIZE / 2, 0, Math.PI * 2)
     ctx.stroke()
+
+    if (this.shieldActive) {
+      const pulseSize = Math.sin(this.shieldPulse) * 3
+
+      ctx.strokeStyle = 'rgba(52, 152, 219, 0.15)'
+      ctx.lineWidth = 18
+      ctx.beginPath()
+      ctx.arc(this.x, this.y, PLAYER_SIZE / 2 + 15 + pulseSize, 0, Math.PI * 2)
+      ctx.stroke()
+
+      ctx.strokeStyle = 'rgba(52, 152, 219, 0.3)'
+      ctx.lineWidth = 10
+      ctx.beginPath()
+      ctx.arc(this.x, this.y, PLAYER_SIZE / 2 + 10 + pulseSize, 0, Math.PI * 2)
+      ctx.stroke()
+
+      ctx.strokeStyle = 'rgba(52, 152, 219, 0.6)'
+      ctx.lineWidth = 4
+      ctx.beginPath()
+      ctx.arc(this.x, this.y, PLAYER_SIZE / 2 + 6 + pulseSize, 0, Math.PI * 2)
+      ctx.stroke()
+
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)'
+      ctx.lineWidth = 2
+      ctx.beginPath()
+      ctx.arc(this.x, this.y, PLAYER_SIZE / 2 + 4 + pulseSize, 0, Math.PI * 2)
+      ctx.stroke()
+    }
   }
 }
 

@@ -1,10 +1,11 @@
 import { BULLET_SIZE, BULLET_SPEED } from './config.js'
 
 export class Bullet {
-  constructor(x, y, targetX, targetY, color) {
+  constructor(x, y, targetX, targetY, color, isPlayerBullet) {
     this.x = x
     this.y = y
     this.color = color || '#fff'
+    this.isPlayerBullet = isPlayerBullet || false
 
     const dx = targetX - x
     const dy = targetY - y

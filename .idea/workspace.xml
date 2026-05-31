@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="626b5d3d-efa3-4b64-aa6f-97fdde52af1b" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/game/GameCanvas.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/game/GameCanvas.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/scripts/game/bot.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/scripts/game/bot.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/scripts/game/bullet.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/scripts/game/bullet.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/scripts/game/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/scripts/game/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/scripts/game/gameEngine.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/scripts/game/gameEngine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/scripts/game/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/scripts/game/player.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,33 +43,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Notification.DisplayName-DoNotAsk-DatabaseConfigFileWatcher.found&quot;: &quot;发现新的/更新的数据库配置&quot;,
-    &quot;Notification.DoNotAsk-DatabaseConfigFileWatcher.found&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/MyProject/Moba/backend/media/avatar&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.python.django.customization.DjangoModulesConfigurable&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;F:\\PyCharm 2025.3.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Notification.DisplayName-DoNotAsk-DatabaseConfigFileWatcher.found": "发现新的/更新的数据库配置",
+    "Notification.DoNotAsk-DatabaseConfigFileWatcher.found": "true",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "F:/MyProject/Moba/frontend/src/assets/game",
+    "list.type.of.created.stylesheet": "CSS",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.intellij.python.django.customization.DjangoModulesConfigurable",
+    "ts.external.directory.path": "F:\\PyCharm 2025.3.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;vue.recent.templates&quot;: [
-      &quot;Vue Composition API Component&quot;
+  "keyToStringList": {
+    "vue.recent.templates": [
+      "Vue Composition API Component"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\MyProject\Moba\frontend\src\assets\game" />
       <recent name="F:\MyProject\Moba\backend\media\avatar" />
     </key>
   </component>
@@ -88,7 +92,7 @@
       <workItem from="1779970391839" duration="6485000" />
       <workItem from="1780100919436" duration="10627000" />
       <workItem from="1780121576086" duration="6483000" />
-      <workItem from="1780187861191" duration="2260000" />
+      <workItem from="1780187861191" duration="4750000" />
     </task>
     <servers />
   </component>

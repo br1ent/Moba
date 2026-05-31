@@ -58,7 +58,7 @@ export class Bot {
     const targetX = this.x + Math.cos(angle) * 100
     const targetY = this.y + Math.sin(angle) * 100
 
-    return new Bullet(this.x, this.y, targetX, targetY, this.color)
+    return new Bullet(this.x, this.y, targetX, targetY, this.color, false)
   }
 
   update() {
